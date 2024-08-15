@@ -55,11 +55,7 @@ export function processMarkdown(markdown, outputType) {
     endResult = resultHtml;
   } else if (outputType == 'plain') {
       endResult = htmlToText(resultHtml, { wordwrap: 130 });
-  }/* else {
-        endResult = juice.inlineContent(resultHtml, css);
-        // console.log("CSS: " + endResult);
-        callback(null, genSuccessResponse(endResult));
-  }*/
+  }
 
   return endResult;
 }

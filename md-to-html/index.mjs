@@ -11,7 +11,11 @@ export async function handler(event, context) {
   }
 
   const outputType = jsonBody.output || 'html';
-  const result = processMarkdown(jsonBody.markdown, outputType);
-
-  return genResponse(200, result);
+  if (outputType !== 'html' && outputType !== 'plain') {
+    return genResponse(400, 'Invalid output type');
+  } else {
+    const result = processMarkdown(jsonBody.markdown, outputType);
+    return genResponse(200, result);
+  }
+  
 }
