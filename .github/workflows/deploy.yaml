@@ -17,7 +17,7 @@ jobs:
 
     - name: Set up the tag name
       id: vars
-      run: echo "TAG_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      run: echo "TAG_NAME=${GITHUB_REF##*/}" | sed 's/\./-/g' >> $GITHUB_ENV
 
     - uses: actions/setup-node@v4
       with:
