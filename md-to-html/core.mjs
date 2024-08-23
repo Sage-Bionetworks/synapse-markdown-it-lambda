@@ -22,14 +22,14 @@ export function genResponse(status, result) {
     "X-Powered-By": "Sage Bionetworks Synapse",
     "Content-Type": "application/json",
   };
-  const errorResponse = {
+  const response = {
     statusCode: status,
     headers: responseHeaders,
     body: JSON.stringify({
       result: result,
     }),
   };
-  return errorResponse;
+  return response;
 }
 
 export function processMarkdown(markdown, outputType) {
