@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    if: github.repository == 'Sage-Bionetworks/synapse-markdown-it-lambda'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -27,5 +28,13 @@ jobs:
     - name: Zip directory
       run: |
         zip -r ../markdown-it-${{ env.TAG_NAME }}.zip .
-        ls -l ../
+
+    - name: Setup JF
+      uses: jfrog/setup-jfrog-cli@v4
+      env:
+        JF_USER: ${{ secrets.PLATFORM_ARTIFACTORY_USER }}
+        JF_PASSWORD: ${{ secrets.PLATFORM_ARTIFACTORY_PWD }}
+
+    -  run: |
         echo Deploying artifact ../markdown-it-${{ env.TAG_NAME }}.zip
+        jf rt ping
