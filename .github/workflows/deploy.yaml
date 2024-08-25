@@ -3,11 +3,10 @@ name: deploy
 on:
   push:
     tags:
-      - '*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build:
-    if: github.repository == 'Sage-Bionetworks/synapse-markdown-it-lambda'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -16,10 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up the tag name
-      id: vars
-      run: echo "TAG_NAME=${GITHUB_REF##*/}" | sed 's/\./-/g' >> $GITHUB_ENV
-
     - uses: actions/setup-node@v4
       with:
         node-version: 20.x
@@ -27,14 +22,26 @@ jobs:
 
     - name: Zip directory
       run: |
-        zip -r ../markdown-it-${{ env.TAG_NAME }}.zip .
-
-    - name: Setup JF
-      uses: jfrog/setup-jfrog-cli@v4
+        zip -r ../markdown-it.zip .
+    
+    - name: Release
+      id: create_release
+      uses: actions/create-release@v1
       env:
-        JF_USER: ${{ secrets.PLATFORM_ARTIFACTORY_USER }}
-        JF_PASSWORD: ${{ secrets.PLATFORM_ARTIFACTORY_PWD }}
-
-    -  run: |
-        echo Deploying artifact ../markdown-it-${{ env.TAG_NAME }}.zip
-        jf rt ping
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: "Synapse markdown-it-lambda ${{ github.ref_name }}"
+        draft: false
+        prerelease: false
+        
+    - name: Upload
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: markdown-it.zip
+        asset_name: markdown-it.zip
+        asset_content_type: application/zip
+    
