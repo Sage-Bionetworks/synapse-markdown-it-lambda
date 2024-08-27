@@ -2,7 +2,7 @@ import { processMarkdown, genResponse } from './core.mjs';
 
 export async function handler(event, context) {
   if (!event || !event.body) {
-    return genResponse(400, 'Missing body in event');
+    return genResponse(400, 'Missing event or body');
   }
 
   const jsonBody = JSON.parse(event.body);

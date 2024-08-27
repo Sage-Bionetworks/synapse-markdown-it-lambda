@@ -26,9 +26,14 @@ describe('core tests', () => {
     expect(result).toContain('<sup>th</sup>');
   });
 
-  test('invalid - html', () => {
+  test('invalid markdown - html', () => {
     const result = processMarkdown("some bad *markdown#", "html");
-    console.log(result);
+    expect(result).toBe('<p>some bad *markdown#</p>\n');
+  });
+
+  test('invalid outputType', () => {
+    const result = processMarkdown("some text", "invalid");
+    expect(result).toBe('');
   });
 
 });

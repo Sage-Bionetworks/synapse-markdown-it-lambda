@@ -48,7 +48,6 @@ export function processMarkdown(markdown, outputType) {
     .use(markdownItSynapseMath);
 
   const resultHtml = md.render(markdown);
-  console.log("resultHtml:" + resultHtml);
   let endResult = "";
 
   if (outputType == 'html') {
