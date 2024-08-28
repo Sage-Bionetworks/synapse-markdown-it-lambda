@@ -9,7 +9,6 @@ import markdownItSynapseHeading from 'markdown-it-synapse-heading';
 import markdownItSynapseTable from 'markdown-it-synapse-table';
 import markdownItStrikethroughAlt from 'markdown-it-strikethrough-alt';
 import markdownItContainer from 'markdown-it-container';
-import markdownItEmphasisAlt from 'markdown-it-emphasis-alt';
 import markdownItInlineComments from 'markdown-it-inline-comments';
 import markdownItBr from 'markdown-it-br';
 import markdownItSynapseMath from 'markdown-it-synapse-math';
@@ -42,7 +41,6 @@ export function processMarkdown(markdown, outputType) {
     .use(markdownItSynapseTable)
     .use(markdownItStrikethroughAlt)
     .use(markdownItContainer)
-    .use(markdownItEmphasisAlt)
     .use(markdownItInlineComments)
     .use(markdownItBr)
     .use(markdownItSynapseMath);
