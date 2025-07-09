@@ -16,6 +16,11 @@ describe('core tests', () => {
     });
   });
 
+  test('header - html', () => {
+    const result = processMarkdown("## Hello Markdown!", "html");
+    expect(result).toBe("<h2 toc=\"true\">Hello Markdown!</h2>\n");
+  });
+
   test('header - plain', () => {
     const result = processMarkdown("# Hello Markdown!", "plain");
     expect(result).toBe('HELLO MARKDOWN!');
@@ -71,5 +76,9 @@ describe('core tests', () => {
     expect(result).toBe('<p><em>italic</em> and <strong> bold </strong> or <em>italic</em> and <strong>bold</strong></p>\n');
   })
 
+  test('synapselink', () => {
+    const result = processMarkdown("testing Synapse link [Research Communities](#!Synapse:syn3722562/wiki/219258)", "html");
+    expect(result).toBe("<p>testing Synapse link <a href=\"/Synapse:syn3722562/wiki/219258\">Research Communities</a></p>\n");
+  })
 
 });

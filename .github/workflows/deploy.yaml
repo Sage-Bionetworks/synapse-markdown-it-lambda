@@ -18,6 +18,7 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 20.x
+
     - run: npm ci
 
     - name: Zip directory
@@ -31,7 +32,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref_name }}
-        release_name: "Synapse markdown-it-lambda ${{ github.ref_name }}"
+        release_name: "synapse-markdown-it-lambda ${{ github.ref_name }}"
         draft: false
         prerelease: false
         
