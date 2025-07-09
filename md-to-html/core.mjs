@@ -1,5 +1,5 @@
 import markdownIt from 'markdown-it';
-import synapsePlugin from 'markdown-it-synapse';
+import synapsePlugin, { init_markdown_it, preprocessMarkdown } from 'markdown-it-synapse';
 import { htmlToText } from 'html-to-text';
 import juice from 'juice';
 import markdownItSub from 'markdown-it-sub';
@@ -45,7 +45,9 @@ export function processMarkdown(markdown, outputType) {
     .use(markdownItBr)
     .use(markdownItSynapseMath);
 
-  const resultHtml = md.render(markdown);
+  init_markdown_it(md);
+
+  const resultHtml = md.render(preprocessMarkdown(markdown));
   let endResult = "";
 
   if (outputType == 'html') {
