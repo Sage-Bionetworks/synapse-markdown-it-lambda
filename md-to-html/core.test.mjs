@@ -39,7 +39,7 @@ describe('core tests', () => {
 
   test('link', () => {
     const result = processMarkdown("a simple link https://google.com", "html");
-    expect(result).toBe('<p>a simple link <a href="https://google.com" target="_blank" ref="noopener noreferrer">https://google.com</a></p>\n');
+    expect(result).toBe('<p>a simple link <a href="https://google.com" target="_blank" rel="noopener noreferrer">https://google.com</a></p>\n');
   })
 
   test('widget', () => {
@@ -54,7 +54,7 @@ describe('core tests', () => {
 
   test('email', () => {
     const result = processMarkdown("An email@address.com is not a mention", "html");
-    expect(result).toBe('<p>An <a href="mailto:email@address.com" target="_blank" ref="noopener noreferrer">email@address.com</a> is not a mention</p>\n');
+    expect(result).toBe('<p>An <a href="mailto:email@address.com" target="_blank" rel="noopener noreferrer">email@address.com</a> is not a mention</p>\n');
   })
 
   test('style', () => {
