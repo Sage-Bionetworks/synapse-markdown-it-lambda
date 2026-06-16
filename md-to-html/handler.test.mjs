@@ -1,24 +1,40 @@
 import { handler } from './index.mjs';
-import { processMarkdown } from './core.mjs';
 
 describe('Handler tests', () => {
 
-  test('missing event', async () => {
-    await expect(handler(null, {})).rejects.toThrow('Missing event or markdown');
+  test('missing event body', async () => {
+    const response = await handler({ body: null });
+    expect(response.statusCode).toBe(400);
   });
 
-  test('missing markdown - json', async () => {
-    await expect(handler({"notMarkdown": "someValue" }, {})).rejects.toThrow('Missing event or markdown');
+  test('malformed JSON body', async () => {
+    const response = await handler({ body: 'not-json' });
+    expect(response.statusCode).toBe(400);
+    expect(JSON.parse(response.body).error).toBe('Invalid JSON body');
+  });
+
+  test('missing markdown field', async () => {
+    const response = await handler({ body: JSON.stringify({ notMarkdown: 'someValue' }) });
+    expect(response.statusCode).toBe(400);
+    expect(JSON.parse(response.body).error).toBe('Missing markdown');
   });
 
   test('invalid output type', async () => {
-    await expect(handler({ markdown: "# Test", "output": "xml" }, {})).rejects.toThrow('Invalid output type');
+    const response = await handler({ body: JSON.stringify({ markdown: '# Test', output: 'xml' }) });
+    expect(response.statusCode).toBe(400);
+    expect(JSON.parse(response.body).error).toBe('Invalid output type');
   });
 
-  test('valid', async () => {
-    const event = { markdown: "# Test", output: "plain" };
-    const response = await handler(event, {});
-    expect(response.result).toBe("TEST");
+  test('valid html output', async () => {
+    const response = await handler({ body: JSON.stringify({ markdown: '# Test' }) });
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(response.body).result).toContain('<h1');
+  });
+
+  test('valid plain output', async () => {
+    const response = await handler({ body: JSON.stringify({ markdown: '# Test', output: 'plain' }) });
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(response.body).result).toBe('TEST');
   });
 
 });
