@@ -27,6 +27,7 @@ export async function handler(event) {
     const result = processMarkdown(markdown, output);
     return genResponse(200, { result });
   } catch (err) {
-    return genResponse(500, { error: err.message });
+    console.error('Markdown processing failed', err);
+    return genResponse(500, { error: 'Internal server error' });
   }
 }
