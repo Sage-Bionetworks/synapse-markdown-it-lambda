@@ -11,10 +11,12 @@ function genResponse(statusCode, body) {
 export async function handler(event) {
   let parsed;
   try {
-    parsed = JSON.parse(event.body);
-    if (!parsed || typeof parsed !== 'object') throw new Error();
+    parsed = JSON.parse(event?.body ?? '');
   } catch {
     return genResponse(400, { error: 'Invalid JSON body' });
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return genResponse(400, { error: 'JSON body must be an object' });
   }
   const { markdown, output = 'html' } = parsed;
   if (!markdown) return genResponse(400, { error: 'Missing markdown' });
