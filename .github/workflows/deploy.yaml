@@ -23,8 +23,8 @@ jobs:
 
     - name: Zip directory
       run: |
-        zip -r ../markdown-it.zip .
-    
+        zip -r ../markdown-it-${{ github.ref_name }}.zip .
+
     - name: Release
       id: create_release
       uses: actions/create-release@v1
@@ -35,14 +35,14 @@ jobs:
         release_name: "synapse-markdown-it-lambda ${{ github.ref_name }}"
         draft: false
         prerelease: false
-        
+
     - name: Upload
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: markdown-it.zip
-        asset_name: markdown-it.zip
+        asset_path: markdown-it-${{ github.ref_name }}.zip
+        asset_name: markdown-it-${{ github.ref_name }}.zip
         asset_content_type: application/zip
     
