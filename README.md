@@ -5,4 +5,3 @@ To release:
   - push tag 'vx.y.z' on the main branch
 
 The deployment is handled by the Synapse-Stack-Builder
-

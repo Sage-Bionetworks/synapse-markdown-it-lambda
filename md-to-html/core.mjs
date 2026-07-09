@@ -17,7 +17,7 @@ import markdownItSupAlt from 'markdown-it-sup-alt';
 
 export function processMarkdown(markdown, outputType) {
   const md = markdownIt()
-  md.use(synapsePlugin, '', markdown.baseURL)     
+  md.use(synapsePlugin, '', markdown.baseURL)
     .use(markdownItSub)
     .use(markdownItSup)
     .use(markdownItCenterText)
