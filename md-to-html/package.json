@@ -23,11 +23,11 @@
     "body-parser": "2.3.0",
     "cookie-parser": "1.4.7",
     "debug": "4.4.3",
-    "eslint": "10.5.0",
+    "eslint": "10.8.1",
     "eslint-plugin-nodeca": "1.0.3",
     "html-to-text": "10.0.0",
-    "juice": "12.1.1",
-    "markdown-it": "14.2.0",
+    "juice": "12.1.2",
+    "markdown-it": "15.0.0",
     "markdown-it-br": "1.0.0",
     "markdown-it-center-text": "1.0.4",
     "markdown-it-container": "4.0.0",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "jest": "30.4.2",
-    "mocha": "11.7.6"
+    "mocha": "11.8.0"
   },
   "jest": {
     "transform": {},
