@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"	# Works for npm, yarn, and pnpm
+    directory: "/md-to-html"	# Location of your package.json
+    schedule:
+      interval: "weekly"	# Options: daily, weekly, monthly
+    ignore:
+      - dependency-name: "*"	# Applies to all dependencies
+        update-types:
+          - "version-update:semver-major" # Blocks major updates, allowing minor & patch
+
