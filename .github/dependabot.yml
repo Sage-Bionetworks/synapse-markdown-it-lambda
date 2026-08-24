@@ -1,11 +1,18 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"	# Works for npm, yarn, and pnpm
-    directory: "/md-to-html"	# Location of your package.json
-    schedule:
-      interval: "weekly"	# Options: daily, weekly, monthly
+  - package-ecosystem: "npm"
+    directory: "/md-to-html"        # path to the manifest
+    schedule: { interval: "weekly" }
+    open-pull-requests-limit: 5
+    groups:
+      all-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
     ignore:
-      - dependency-name: "*"	# Applies to all dependencies
-        update-types:
-          - "version-update:semver-major" # Blocks major updates, allowing minor & patch
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: { interval: "weekly" }
 
