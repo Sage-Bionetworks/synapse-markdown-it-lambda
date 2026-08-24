@@ -23,7 +23,7 @@ jobs:
       with:
         node-version: 24.x
 
-    - run: npm ci
+    - run: npm ci --omit=dev
 
     - name: Zip directory
       run: |

@@ -10,8 +10,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
-    "start": "node ./bin/www"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
   },
   "keywords": [
     "markdown-it-plugin",
@@ -20,13 +19,7 @@
     "Synapse"
   ],
   "dependencies": {
-    "body-parser": "2.3.0",
-    "cookie-parser": "1.4.7",
-    "debug": "4.4.3",
-    "eslint": "10.8.1",
-    "eslint-plugin-nodeca": "1.0.3",
     "html-to-text": "10.0.0",
-    "juice": "12.1.2",
     "markdown-it": "15.0.0",
     "markdown-it-br": "1.0.0",
     "markdown-it-center-text": "1.0.4",
@@ -39,16 +32,10 @@
     "markdown-it-synapse": "2.0.0",
     "markdown-it-synapse-heading": "1.0.1",
     "markdown-it-synapse-math": "3.0.5",
-    "markdown-it-synapse-table": "1.0.8",
-    "markdown-it-testgen": "0.1.6",
-    "morgan": "1.11.0",
-    "pug": "3.0.4",
-    "serve-favicon": "2.5.1",
-    "supertest": "7.2.2"
+    "markdown-it-synapse-table": "1.0.8"
   },
   "devDependencies": {
-    "jest": "30.4.2",
-    "mocha": "11.8.0"
+    "jest": "30.4.2"
   },
   "jest": {
     "transform": {},
