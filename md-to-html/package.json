@@ -19,7 +19,7 @@
     "Synapse"
   ],
   "dependencies": {
-    "html-to-text": "10.0.0",
+    "html-to-text": "10.0.1",
     "markdown-it": "15.0.0",
     "markdown-it-br": "1.0.0",
     "markdown-it-center-text": "1.0.4",
