@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "html-to-text": "10.0.1",
-    "markdown-it": "15.0.0",
+    "markdown-it": "15.0.1",
     "markdown-it-br": "1.0.0",
     "markdown-it-center-text": "1.0.4",
     "markdown-it-container": "4.0.0",
@@ -35,7 +35,7 @@
     "markdown-it-synapse-table": "1.0.8"
   },
   "devDependencies": {
-    "jest": "30.4.2"
+    "jest": "30.5.0"
   },
   "jest": {
     "transform": {},
