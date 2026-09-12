@@ -35,7 +35,7 @@
     "markdown-it-synapse-table": "1.0.8"
   },
   "devDependencies": {
-    "jest": "30.4.2"
+    "jest": "30.5.1"
   },
   "jest": {
     "transform": {},
